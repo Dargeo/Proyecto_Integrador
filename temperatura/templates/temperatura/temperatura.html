@@ -1,0 +1,23 @@
+{% extends 'temperatura/base.html' %}
+{% block content %}
+<div class="container">
+    <form method="get">
+        <p><label for = "nombre"> Ingrese los datos: </label></p>
+        <p><input type="number" name="value" placeholder = "Escribe el valor" id = "valor" pattern="^[0-9]+" min = "0"></p>
+        <p><input type= "text" name="tipo" placeholder = "Escribe el tipo"></p>
+        <p><input type= "number" name="codigoSensor" placeholder = "Codigo de sensor"></p>
+        <select name="origen"  id = "">
+            <option value = "Sensor en terreno">Sensor en terreno</option>
+            <option value = "Imagen satelital">Imagen satelital </option>
+            <option value = "Imagen dron">Imagen dron </option>
+            <option value = "Dato derivado">Dato derivado</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    {% for temperatura in temperaturas %}
+    <ul class="list-group">
+        <li class="list-group-item">Se agrego el dato en la fecha : {{temperatura.fecha}}{{temperatura.type}} = {{temperatura.value}}, con el codigo de sensor: {{temperatura.codigoSensor}} y el origen : {{temperatura.origen}}</li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}
